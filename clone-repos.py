@@ -1,8 +1,13 @@
 #!/usr/bin/python
 """-------------------------------------------------------------------------clone-repos.py
+
+STUB FOR REWRITE:
+This should be segmented into servertomirror/organization/user/repository
+and the sources should be consolidated into either a file or other data source.
+
 Make mirror copies of repos from github and bitbucket.
 Author: D. Delmar Davis <don@suspectdevices.com>
-Copyleft: (c) 2020 D. Delmar Davis <don@suspectdevices.com>
+Copyleft: (c) 2021 D. Delmar Davis <don@suspectdevices.com>
 Liscense: mit
 """
 #from github import Github
@@ -51,5 +56,3 @@ for repo in bitbucketrepos:
 #user = g.get_user(username)
 #for repo in user.get_repos():
 #    print"'"+username+"/"+repo.name+"',"
-
-
