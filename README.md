@@ -35,6 +35,30 @@ postgres@shelly:~$ createdb gitea -O git
 Once gitea is installed go to myservername:3000 and navigate to the login in the upper right corner. Fill in the database,username, and dbpassword. Replace localhost with your servers fqdn. Create admin user (remember password here)
 
 ## Testing it out.
+The first thing we want to do here is to mirror one of our github repositories (this one)
+### Mirroring Github Repositories.
+At some point we want to automate mirroring all of our repositories. For now we want to test it out. To do this we create a personal-access-token from our github developer tools. (save the token somewhere as it will not be recoverable). Once we have that token we select New migration. Fill in the https://github.com/myuser/myrepo and paste the token into the form, select mirror and the magic begins.
+
+### Editiing the mirror interval
+The default mirror interval is 8 hours with a minimum of 10 minutes. 
+To fix this we add the following to /etc/gitea/app.ini
+
+```
+nano /etc/gitea.app.ini
+...
+[cron]
+ENABLED = true
+RUN_AT_START = true
+
+[cron.update_mirrors]
+SCHEDULE = @every 2m
+
+[mirror]
+DEFAULT_INTERVAL = 1h
+MIN_INTERVAL = 2m
+...
+service gitea restart
+```
 
 
 
