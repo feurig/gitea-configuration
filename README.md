@@ -34,6 +34,8 @@ postgres@shelly:~$ createdb gitea -O git
 ### Initial configuration
 Once gitea is installed go to myservername:3000 and navigate to the login in the upper right corner. Fill in the database,username, and dbpassword. Replace localhost with your servers fqdn. Create admin user (remember password here)
 
+## Testing it out.
+
 
 
 ## references
@@ -41,3 +43,5 @@ Once gitea is installed go to myservername:3000 and navigate to the login in the
 * [https://bryangilbert.com/post/devops/how-to-setup-gitea-ubuntu/](https://bryangilbert.com/post/devops/how-to-setup-gitea-ubuntu/) 
 * [https://luxagraf.net/src/gitea-nginx-postgresql-ubuntu-1804](https://luxagraf.net/src/gitea-nginx-postgresql-ubuntu-1804)
 * [https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token)
+* [https://jpmens.net/2019/04/15/i-mirror-my-github-repositories-to-gitea/](https://jpmens.net/2019/04/15/i-mirror-my-github-repositories-to-gitea/)
+* 
