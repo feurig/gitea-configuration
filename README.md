@@ -68,4 +68,7 @@ service gitea restart
 * [https://luxagraf.net/src/gitea-nginx-postgresql-ubuntu-1804](https://luxagraf.net/src/gitea-nginx-postgresql-ubuntu-1804)
 * [https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token)
 * [https://jpmens.net/2019/04/15/i-mirror-my-github-repositories-to-gitea/](https://jpmens.net/2019/04/15/i-mirror-my-github-repositories-to-gitea/)
-* 
+* [https://websiteforstudents.com/how-to-install-gitea-git-server-on-ubuntu-16-04-18-04-18-10-with-mariadb/](https://websiteforstudents.com/how-to-install-gitea-git-server-on-ubuntu-16-04-18-04-18-10-with-mariadb/)
+* [https://docs.gitea.io/en-us/config-cheat-sheet/](https://docs.gitea.io/en-us/config-cheat-sheet/)
+* [https://charlesreid1.github.io/setting-up-a-self-hosted-github-clone-with-gitea.html](https://charlesreid1.github.io/setting-up-a-self-hosted-github-clone-with-gitea.html)
+* [https://charlesreid1.com/wiki/Gitea#Using_Binary](https://charlesreid1.com/wiki/Gitea#Using_Binary)
