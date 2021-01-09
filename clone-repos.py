@@ -82,12 +82,13 @@ gh = Github(github_token)
 for repo in gh.get_user().get_repos():
     # Mirror to Gitea if I haven't forked this repository from elsewhere
     #if not repo.fork:
+        print("* mirroring ",repo.full_name)
         real_repo = repo.full_name.split('/')[1]
         if real_repo in repo_map:
             # We're creating the repo in another account (most likely an organization)
             gitea_dest_user = repo_map[real_repo]
         else:
-            gitea_dest_user = gitea_user
+            gitea_dest_user = repo.full_name.split('/')[0]
 
         r = session.get("{0}/users/{1}".format(gitea_url, gitea_dest_user))
         if r.status_code != 200:
