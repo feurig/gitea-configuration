@@ -1,6 +1,7 @@
 # gitea-configuration
-
 Build notes for getea server.
+
+Master Copy: [https://github.com/feurig/gitea-configuration/blob/main/README.md](https://github.com/feurig/gitea-configuration/blob/main/README.md)
 ## Server Setup
 ### Installing pre-requisites
 
@@ -60,6 +61,9 @@ MIN_INTERVAL = 2m
 service gitea restart
 ```
 
+### Automating creation of mirrors (github).
+
+[https://github.com/feurig/gitea-configuration/blob/main/mirror-repos.py](https://github.com/feurig/gitea-configuration/blob/main/mirror-repos.py)
 
 
 ## references
