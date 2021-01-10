@@ -1,9 +1,8 @@
 #!/usr/bin/python
 """-------------------------------------------------------------------------clone-repos.py
 
-STUB FOR REWRITE:
-This should be segmented into servertomirror/organization/user/repository
-and the sources should be consolidated into either a file or other data source.
+this is mostly stolen from code here
+https://jpmens.net/2019/04/15/i-mirror-my-github-repositories-to-gitea/
 
 Make mirror copies of repos from github and bitbucket.
 Author: D. Delmar Davis <don@suspectdevices.com>
