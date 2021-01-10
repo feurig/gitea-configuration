@@ -62,8 +62,19 @@ service gitea restart
 ```
 
 ### Automating creation of mirrors (github).
+We were able to automate mirroring our github repos with the help of jpmens.net and may eventually add bitbucket to the scraping scripts.
 
 [https://github.com/feurig/gitea-configuration/blob/main/mirror-repos.py](https://github.com/feurig/gitea-configuration/blob/main/mirror-repos.py)
+
+#### Manually migrating bitbucket mirrors.
+To make the mirrors work with bitbucket create an application password and then do a "Git" migration using the application password as your credentials.
+ 
+## Setting up ssl and apache proxy.
+Gotchas with getting ssl and apache included permissions issues with the letsencrypt certificates (worked around) and getting the proxy to work needed to enable proxy_http2 and proxy module (not proxy_http)
+
+* Gitea configuration [etc/gitea/app.ini](https://github.com/feurig/gitea-configuration/blob/main/etc/gitea/app.ini)
+* Apache configuration [etc/apache2/sites-avaliable/gitea.conf](https://github.com/feurig/gitea-configuration/blob/main/etc/apache2/sites-avaliable/gitea.conf)
+
 
 
 ## references
@@ -76,3 +87,4 @@ service gitea restart
 * [https://docs.gitea.io/en-us/config-cheat-sheet/](https://docs.gitea.io/en-us/config-cheat-sheet/)
 * [https://charlesreid1.github.io/setting-up-a-self-hosted-github-clone-with-gitea.html](https://charlesreid1.github.io/setting-up-a-self-hosted-github-clone-with-gitea.html)
 * [https://charlesreid1.com/wiki/Gitea#Using_Binary](https://charlesreid1.com/wiki/Gitea#Using_Binary)
+* [https://mindefrag.net/2018/07/how-to-install-and-configure-gitea-a-self-hosted-github-like-service/](https://mindefrag.net/2018/07/how-to-install-and-configure-gitea-a-self-hosted-github-like-service/)
