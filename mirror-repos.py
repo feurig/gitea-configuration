@@ -36,19 +36,6 @@ repo_map = { "some-github-repo":		"a-gitea-org",
 #    'feurig/redmine-configuration','feurig/rtmidi','feurig/Suspect-Devices-Open-Hardware',
 #    'feurig/wsgi-bitbucket-mirror',
 #]
-
-bitbucketrepos=['feurig/ems-light','feurig/musicbox','feurig/straight-from-hell.com',
-       'feurig/trashterm','feurig/missinglink-hardware','feurig/bnc-proprietary',
-       'feurig/ems-firmware','feurig/ems-golang','feurig/ems-framework',
-       'joedumoulin/sesh','suspectdevicesadmin/ansible']
-
-
-'''
-for repo in bitbucketrepos:
-    url="git@bitbucket.org:"+repo+".git"
-    print "Cloning :",url
-    subprocess.call(["/usr/bin/git", "clone", "--mirror", url], cwd=repodir)
-'''
 # used to create lists of repos
 #response = urllib2.urlopen("https://api.bitbucket.org/2.0/repositories/"+username+"?pagelen=100")
 #data=json.loads(response.read())['values']
@@ -117,3 +104,15 @@ for repo in gh.get_user().get_repos():
             if r.status_code == 409:        # repository exists
                 continue
             print(r.status_code, r.text, jsonstring)
+
+bitbucket_username = "feurig"
+bitbucket_token = open(os.path.expanduser("~/.bit-bucket-token")).read().strip()
+bitbucketrepos=['feurig/ems-light','feurig/musicbox','feurig/straight-from-hell.com',
+       'feurig/trashterm','feurig/missinglink-hardware','feurig/bnc-proprietary',
+       'feurig/ems-firmware','feurig/ems-golang','feurig/ems-framework',
+       'joedumoulin/sesh','suspectdevicesadmin/ansible']
+
+
+'''
+for repo in bitbucketrepos:
+'''
