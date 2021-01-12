@@ -1,7 +1,13 @@
 # gitea-configuration
-Build notes for getea server.
+(Build notes for getea server.)
 
 Master Copy: [https://github.com/feurig/gitea-configuration/blob/main/README.md](https://github.com/feurig/gitea-configuration/blob/main/README.md)
+
+Gitea is a github like environment written in go. It provides git in an accessable form and allows you to create issues and write wiki pages like redmine and trac while also serving those repositories. 
+
+It is less convoluted than gitlab but more configurable than GCOS which it is based on.  
+
+
 ## Server Setup
 ### Installing pre-requisites
 
@@ -36,21 +42,18 @@ postgres@shelly:~$ createdb gitea -O git
 Once gitea is installed go to myservername:3000 and navigate to the login in the upper right corner. Fill in the database,username, and dbpassword. Replace localhost with your servers fqdn. Create admin user (remember password here)
 
 ## Testing it out.
-The first thing we want to do here is to mirror one of our github repositories (this one)
-### Mirroring Github Repositories.
-At some point we want to automate mirroring all of our repositories. For now we want to test it out. To do this we create a personal-access-token from our github developer tools. (save the token somewhere as it will not be recoverable). Once we have that token we select New migration. Fill in the https://github.com/myuser/myrepo and paste the token into the form, select mirror and the magic begins.
+The first thing we want to do here is to mirror our github repositories.
 
-### Editiing the mirror interval
+### Mirroring Github Repositories.
+We want to automate mirroring all of our repositories hosted on github (and bitbucket at some point). To do this we create a personal-access-token from our github developer tools. (save the token somewhere as it will not be recoverable). Once we have that token we select New migration. Fill in the https://github.com/myuser/myrepo and paste the token into the form, select mirror and the magic begins.
+
+### Editing the mirror interval
 The default mirror interval is 8 hours with a minimum of 10 minutes. 
 To fix this we add the following to /etc/gitea/app.ini
 
 ```
 nano /etc/gitea.app.ini
 ...
-[cron]
-ENABLED = true
-RUN_AT_START = true
-
 [cron.update_mirrors]
 SCHEDULE = @every 2m
 
@@ -62,11 +65,27 @@ service gitea restart
 ```
 
 ### Automating creation of mirrors (github).
+We were able to automate mirroring our github repos with the help of some python provided by jpmens.net we modified it to allow us to separate local mirrors by the same organizations used by github though this required us to manually add the local users and organizations. The script in progress is here.
 
 [https://github.com/feurig/gitea-configuration/blob/main/mirror-repos.py](https://github.com/feurig/gitea-configuration/blob/main/mirror-repos.py)
 
+#### Manually migrating bitbucket mirrors.
+Like github mirroring bitbucket repositories required the creation of an application password. Then add a new "Git" migration using the application password as your credentials.
+ 
+## Setting up ssl and apache proxy.
+Gitea runs as an unprivilaged user on port 3000. To present it as a normal web server required a proxy server (apache). Since we had created letsEncrypt certificates for the old git server we moved them. There are still permissions issues with giving gitea access to the certificates which were worked around by copying the files.
 
-## references
+Getting apache to proxy the https required enabling 'proxy\_http2' and 'proxy' module (not 'proxy\_http')
+
+* Gitea configuration [etc/gitea/app.ini](https://github.com/feurig/gitea-configuration/blob/main/etc/gitea/app.ini)
+* Apache configuration [etc/apache2/sites-avaliable/gitea.conf](https://github.com/feurig/gitea-configuration/blob/main/etc/apache2/sites-avaliable/gitea.conf)
+
+### Todo
+* Make gitea less ugly (add Susdev brand look and feel)
+* Fix permission issues with certificate issues to allow for autorenewal.
+* Consider normalizing git user and repo locations.
+
+## references/linkdump
 * [https://gitlab.com/packaging/gitea](https://gitlab.com/packaging/gitea)
 * [https://bryangilbert.com/post/devops/how-to-setup-gitea-ubuntu/](https://bryangilbert.com/post/devops/how-to-setup-gitea-ubuntu/) 
 * [https://luxagraf.net/src/gitea-nginx-postgresql-ubuntu-1804](https://luxagraf.net/src/gitea-nginx-postgresql-ubuntu-1804)
@@ -76,3 +95,4 @@ service gitea restart
 * [https://docs.gitea.io/en-us/config-cheat-sheet/](https://docs.gitea.io/en-us/config-cheat-sheet/)
 * [https://charlesreid1.github.io/setting-up-a-self-hosted-github-clone-with-gitea.html](https://charlesreid1.github.io/setting-up-a-self-hosted-github-clone-with-gitea.html)
 * [https://charlesreid1.com/wiki/Gitea#Using_Binary](https://charlesreid1.com/wiki/Gitea#Using_Binary)
+* [https://mindefrag.net/2018/07/how-to-install-and-configure-gitea-a-self-hosted-github-like-service/](https://mindefrag.net/2018/07/how-to-install-and-configure-gitea-a-self-hosted-github-like-service/)
