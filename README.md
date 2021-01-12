@@ -77,12 +77,15 @@ Gitea runs as an unprivilaged user on port 3000. To present it as a normal web s
 
 Getting apache to proxy the https required enabling 'proxy\_http2' and 'proxy' module (not 'proxy\_http')
 
+```
+a2enmod proxy proxy_http2
+```
 * Gitea configuration [etc/gitea/app.ini](https://github.com/feurig/gitea-configuration/blob/main/etc/gitea/app.ini)
 * Apache configuration [etc/apache2/sites-avaliable/gitea.conf](https://github.com/feurig/gitea-configuration/blob/main/etc/apache2/sites-avaliable/gitea.conf)
 
 ### Todo
 * Make gitea less ugly (add Susdev brand look and feel)
-* Fix permission issues with certificate issues to allow for autorenewal.
+* Fix permission issues with certificate issues to allow for autorenewal if possible.
 * Consider normalizing git user and repo locations.
 
 ## references/linkdump
